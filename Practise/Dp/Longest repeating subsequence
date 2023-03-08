@@ -14,46 +14,46 @@ Int bit
     Solution::anytwo(string a)
 {
 
-  string b = a;
+    string b = a;
 
-  int n = a.size();
-  int m = b.size();
+    int n = a.size();
+    int m = b.size();
 
-  int t[n + 1][m + 1]; // matrix banaya
+    int t[n + 1][m + 1]; // matrix banaya
 
-  for (int i = 0; i < n + 1; i++)
-  {
-    for (int j = 0; j < m + 1; j++)
+    for (int i = 0; i < n + 1; i++)
     {
-      if (i == 0 || j == 0)
-      { // initailization
-        t[i][j] = 0;
-      }
+        for (int j = 0; j < m + 1; j++)
+        {
+            if (i == 0 || j == 0)
+            { // initailization
+                t[i][j] = 0;
+            }
+        }
     }
-  }
 
-  for (int i = 1; i < n + 1; i++)
-  {
-    for (int j = 1; j < m + 1; j++)
+    for (int i = 1; i < n + 1; i++)
     {
+        for (int j = 1; j < m + 1; j++)
+        {
 
-      if (a[i - 1] == b[j - 1] && i != j)
-      {
-        t[i][j] = t[i - 1][j - 1] + 1; // lcs banwa daala
-      }
-      else
-      {
-        t[i][j] = max(t[i][j - 1], t[i - 1][j]);
-      }
+            if (a[i - 1] == b[j - 1] && i != j)
+            {
+                t[i][j] = t[i - 1][j - 1] + 1; // lcs banwa daala
+            }
+            else
+            {
+                t[i][j] = max(t[i][j - 1], t[i - 1][j]);
+            }
+        }
     }
-  }
 
-  if (t[n][m] >= 2)
-  { // question condition
-    return 1;
-  }
-  else
-  {
-    return 0;
-  }
+    if (t[n][m] >= 2)
+    { // question condition
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
 }
