@@ -39,6 +39,12 @@ Constraints:
 -1 <= forts[i] <= 1
 
 
+//approach__
+//run a loop...check if 1 0r -1
+//if 1 then check i+1 position ...if  its zero then then increment count and upadate ans;
+//and then if -1 then fianlize ans
+
+
 
 
 
@@ -51,14 +57,14 @@ public:
 
         for (int i=0; i<n; i++){
             if (forts[i]==1){
-                i++;
+                i++; //goes to i+1
                 int count=0;
                 while (i<n && forts[i]==0){
-                    count++;
-                    i++;
+                    count++;  //count no of zeroes
+                    i++; //increemnt because its the syntax of while
                 }
-                if (i<n && forts[i]==-1)ans= max(ans,count);
-                i--;
+                if (i<n && forts[i]==-1)ans= max(ans,count); // now if this i is -1 instead of zero then my army has reached to the fort and thus finalize ans;
+                i--; //since we incremnted in while earlier,we need to decrement it too;
             }
             if (forts[i]==-1){
                 i++;
