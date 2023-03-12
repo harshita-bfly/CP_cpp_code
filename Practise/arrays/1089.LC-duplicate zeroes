@@ -1,0 +1,71 @@
+Given a fixed-length integer array arr, duplicate each occurrence of zero, shifting the remaining elements to the right.
+
+Note that elements beyond the length of the original array are not written. Do the above modifications to the input array in place and do not return anything.
+
+ 
+
+Example 1:
+
+Input: arr = [1,0,2,3,0,4,5,0]
+Output: [1,0,0,2,3,0,0,4]
+Explanation: After calling your function, the input array is modified to: [1,0,0,2,3,0,0,4]
+Example 2:
+
+Input: arr = [1,2,3]
+Output: [1,2,3]
+Explanation: After calling your function, the input array is modified to: [1,2,3]
+
+
+
+
+
+class Solution {
+public:
+
+// TC-0(N2)
+// SC-0(1)
+    void duplicateZeros(vector<int>& arr) {
+        int n=arr.size();
+        for(int i=0;i<n;i++){
+            if(arr[i]==0){
+                for(int j=n-1;j>=i+1;j--){
+                    arr[j]=arr[j-1]; //yeh next to zero ,auto will palce zero
+                }
+                i++;
+            }
+           //if zero seen shift all elem to right in the same array...i++ bec skip that  etxra zero  
+        }
+        
+        
+    }
+};
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+// approach -2
+
+class Solution{
+public:
+//TC: 0(n2)
+//sc:0(n)
+     void duplicateZeros(vector<int>& arr) {
+         int n =arr.size();
+        
+        vector<int> ans;
+        for(int i=0;i<n;i++){
+            if(arr[i]==0){
+                ans.push_back(0);
+                ans.push_back(0);
+
+            }
+            else{
+                ans.push_back(arr[i]);
+            }
+        }
+        for(int j=0;j<n;j++){
+            arr[j]=ans[j];
+        }
+        //use another arr, place explicitly the numbers,and then copy back till size n;
+     }
+   
+
+};
