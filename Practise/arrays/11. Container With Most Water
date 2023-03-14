@@ -1,0 +1,54 @@
+You are given an integer array height of length n. There are n vertical lines drawn such that the two endpoints of the ith line are (i, 0) and (i, height[i]).
+
+Find two lines that together with the x-axis form a container, such that the container contains the most water.
+
+Return the maximum amount of water a container can store.
+
+Notice that you may not slant the container.
+
+ 
+
+Example 1:
+
+
+Input: height = [1,8,6,2,5,4,8,3,7]
+Output: 49
+Explanation: The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. In this case, the max area of water (blue section) the container can contain is 49.
+
+
+class Solution {
+public:
+    int maxArea(vector<int>& height) {
+      //slant:not to lean diagonally
+      //example dry run..to undertand the working
+      //in ex we have got 49 by 7*7...max water=max(l*B);
+      //l=length and b=breadth ....to get max water one of l and b should be min...basic maths
+      //so l=7 is the distance between 8 and 7 ...and.....b=7 is min of height (8,7)
+      //so distnace*min height  is the formula..
+      //two ptrs....should be at the end bec that way we can easily ensure max water since 
+      //max area will be covered....
+      //to store every possible combo of max area,,we can use hasmaps....and this way is also feasble.
+      //min se move kyu??..actually we want max area..since either length or breadth inc or dec
+      //ek baar kam length we aim to progress if lenth will inc and hecnec wahi ptrs inc hue hain.
+      //h[i]==hh[j]??doesnt really matter as to which ptr will be shifted 
+      int n=height.size();
+      int i=0;
+      int j =n-1;
+
+      int ans=0; 
+
+      while(i<j){
+          if(height[i]>height[j]){
+              ans=max(ans,abs(i-j)*height[j]);
+              j--;
+
+              
+          }
+          else{
+              ans=max(ans,abs(i-j)*height[i]);
+              i++;
+          }
+       }
+       return ans;
+    }
+};
